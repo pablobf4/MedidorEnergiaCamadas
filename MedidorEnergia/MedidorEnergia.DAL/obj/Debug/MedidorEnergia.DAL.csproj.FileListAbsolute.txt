@@ -1,0 +1,1 @@
+C:\Users\pablo\documents\visual studio 2013\Projects\MedidorEnergia\MedidorEnergia.DAL\obj\Debug\MedidorEnergia.DAL.csprojResolveAssemblyReference.cache
