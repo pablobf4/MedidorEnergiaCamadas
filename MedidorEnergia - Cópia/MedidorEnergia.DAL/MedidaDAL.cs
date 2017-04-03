@@ -48,15 +48,15 @@ namespace MedidorEnergia.DAL
             db.SaveChanges();
         }
         public List<MedidaDTO> Lista() 
-    {
-        var resultado = new List<MedidaDTO>();
-        var lista = db.Medidas.ToList();
-        foreach (var t in lista )
         {
-            resultado.Add(ConverterParaDTO(t));
-        }
-        return resultado;    
-            
+            var resultado = new List<MedidaDTO>();
+            var lista = db.Medidas.ToList();
+            foreach (var t in lista )
+            {
+                resultado.Add(ConverterParaDTO(t));
+            }
+            return resultado;    
+
         }
         public MedidaDTO BuscaPorId(int id)
         {
@@ -74,7 +74,7 @@ namespace MedidorEnergia.DAL
         }
         public void Atualizar(MedidaDTO medidaDTO) 
         {
-            var medida = new Medida();
+            var medida = db.Medidas.Find(medidaDTO.Id);
             medida.IDObjeto =  medidaDTO.IDObjeto;
             medida.Potencia =  medidaDTO.Potencia;
             medida.Horario  =  medidaDTO.Horario;
