@@ -43,9 +43,7 @@ namespace MedidorEnergia.DAL
         }
         public void Inserir(MedidaDTO medidaDTO) 
         {
-            var  medida = new Medida();
-            var medidaDAl = new MedidaDAL();
-            medida = medidaDAl.ConverterParaDAL(medidaDTO);
+            var  medida = ConverterParaDAL(medidaDTO);
             db.Medidas.Add(medida);
             db.SaveChanges();
         }
@@ -62,24 +60,29 @@ namespace MedidorEnergia.DAL
         }
         public MedidaDTO BuscaPorId(int id)
         {
-            var medidas = new Medida();
-            var key = db.Medidas.Find(id);
-            return ConverterParaDTO(key);
+            
+            var medida = db.Medidas.Find(id);
+            return ConverterParaDTO(medida);
         }
 
-        public void Deletar(MedidaDTO medidaDTO) 
+        public void Deletar(int id ) 
         {
-          
-            db.Medidas.Remove(ConverterParaDAL(medidaDTO));
+            var medida = db.Medidas.Find(id);
+            db.Medidas.Remove(medida);
+            db.saveChange
             
         }
         public void Atualizar(MedidaDTO medidaDTO) 
         {
             var medida = new Medida();
+            medida.IDObjeto =  medidaDTO.IDObjeto;
+            medida.Potencia =  medidaDTO.Potencia;
+            medida.Horario  =  medidaDTO.Horario;
+            medida.Corrente =  medidaDTO.Corrente;
             db.Medidas.Attach(medida);
             db.Entry(medida).State = System.Data.Entity.EntityState.Modified;
             db.SaveChanges();
-            medidaDTO = ConverterParaDTO(medida);
+
         }
         
 
